@@ -1,0 +1,165 @@
+package skynet;
+
+public class Methods {
+
+	// stock
+	
+	static int F8ft =6; // F = Foam
+	static int F6ft =4;
+	static int F5ft =9;
+
+	static int H8ft =4; // H = Hard 
+	static int H6ft =5;
+	static int H5ft =2;
+	
+	static int HardStock = H8ft + H6ft + H5ft;
+	static int FoamStock = F8ft + F6ft + F5ft;
+	
+	static int stock = FoamStock + FoamStock;
+
+	// prices buy
+
+	static int F8ftP = 150;
+	static int F6ftP = 120;
+	static int F5ftP = 100;
+
+	static int H8ftP = 250;
+	static int H6ftP = 240;
+	static int H5ftP = 230;
+
+	// prices rent
+	
+	static int H8ftR = 15;
+	static int H6ftR = 15;
+	static int H5ftR = 15;
+	
+	static int S8ftR = 10;
+	static int S6ftR = 10;
+	static int S5ftR = 10;
+	
+	// rent deals
+	
+	static int Hard241 = 15;
+	
+	static int Soft241 = 15;
+	
+	
+	
+
+	public static int stockBuy(int n) {
+
+		int sum = 0;
+
+		sum = stock - n;
+
+		return sum;
+	}
+
+	public static int stockRent(int n) {
+
+		int sum = 0;
+
+		sum = stock + n;
+
+		return sum;
+	}
+
+
+	public static int sell(int n) {
+
+		int one = 0;
+		if( n == 1) 
+		{
+			one = one + 20;
+			return one;
+		}
+
+		int two = 0;
+		if(n == 2)
+		{
+			two = 34*2;
+			return two;
+		}
+
+		int three = 0;
+		if(n == 3)
+		{
+			three = three + 80;
+			return three;
+		}
+
+		int four = 0;
+		if(n == 4)
+		{
+			four = 34*4;
+			return four;
+		}
+
+		int five = 0;
+		if(n==5)
+		{
+			five = 34*5;
+			return five;
+		}
+
+		int six = 0;
+		if(n==6)
+		{
+			six = six + 150;
+			return six;
+		}
+
+
+
+		return n;
+	}
+
+	public static int Buy(int n) { // purchase humans method
+
+
+		int one = 0;
+		if( n == 1) 
+		{
+			one = one + 34;
+			return one;
+		}
+
+		int two = 0;
+		if(n == 2)
+		{
+			two = 34*2;
+			return two;
+		}
+
+		int three = 0;
+		if(n == 3)
+		{
+			three = three + 80;
+			return three;
+		}
+
+		int four = 0;
+		if(n == 4)
+		{
+			four = 34*4;
+			return four;
+		}
+
+		int five = 0;
+		if(n==5)
+		{
+			five = 34*5;
+			return five;
+		}
+
+		int six = 0;
+		if(n==6)
+		{
+			six = six + 150;
+			return six;
+		}
+
+		return 0;
+
+	}
+}
