@@ -1,0 +1,307 @@
+package skynet;
+
+import skynet.Methods;
+import java.util.ArrayList;
+
+public class Menu {
+
+	static ArrayList<Item> boards = new ArrayList<Item>();  // Declaring Array list
+	
+	static int ref;
+	static String type; // array list variables
+	static int size;
+
+	public static Item add() // Assign a value to each variable 
+	{
+		ref = Console.askInt("Enter the Boards Ref Number: \n ");
+		type = Console.askString("Type of board Hard/Soft: \n ");
+		size = Console.askInt("Size of board 8ft/6ft/5ft:  \n ");
+		
+		Item boards = new Item(ref, type, size); // Array list board
+		
+		return boards;
+
+		
+	}
+
+	public static void print() // print recently returned stock
+	{
+		for(int i=0;i<boards.size(); i++)
+		{
+			Item item = boards.get(i);
+
+			
+
+			System.out.println("---------------------------------------");
+			System.out.println("              Board ref:  \t" + item.getRef()); 
+			System.out.println("              Type:       \t" +item.getType());
+			System.out.println("              Size in ft: \t" + item.getSize());
+			System.out.println("---------------------------------------");
+		}
+	
+		
+		
+	}
+
+	static boolean finished = false;
+
+	public static void main(String[] args) {
+
+		int checkout = 0; //
+
+		Item item;
+
+
+		boolean carry0n = true;
+		while (carry0n)
+		{                                            // use of switch case structures 
+
+			System.out.println("+---------------------------------------+"); 
+			System.out.println("|               Welcome to              |");
+			System.out.println("|                  to                   |");
+			System.out.println("|              Bobs boards              |");
+			System.out.println("+---------------------------------------+");
+
+			char option = Console.askChar("Choose from:\n 1) Return a board \n 2) Show inventory & todays returns \n 3) Market place \n 4) Checkout \n Q)uit "); // First menu switch case option 
+
+			switch(option)
+			{ 
+
+			case '1':
+				item = add();
+				boards.add(item); // adds inputed values to the array list (ref, type, size)
+
+				break;
+
+			case '2': // prints out the stock 
+				System.out.println("We have "+Methods.HardStock+" hard surfboards left \n"); 
+				System.out.println("  8ft hards: "+Methods.H8ft+" left in stock");
+				System.out.println("  6ft hards: "+Methods.H6ft+" left in stock");
+				System.out.println("  5ft hards: "+Methods.H5ft+" left in stock \n");
+				
+				
+				
+				System.out.println("We have "+Methods.FoamStock+" foam boardsboards left \n");
+				System.out.println("  8ft foams: "+Methods.F8ft+" left in stock");
+				System.out.println("  6ft foams: "+Methods.F6ft+" left in stock");
+				System.out.println("  5ft foams: "+Methods.F5ft+" left in stock");
+				
+
+				print();
+				break;
+
+			case '3':
+				System.out.println("+---------------------------------------+");
+				System.out.println("|            Welcome to Bobs            |");
+				System.out.println("|             Market place              |");
+				System.out.println("|           In stock we have            |");
+				System.out.println("|                                       |");
+				System.out.println("|        8ft foams: "+Methods.F8ft+" left in stock     |"); // refers to the methods class
+				System.out.println("|        6ft foams: "+Methods.F6ft+" left in stock     |");
+				System.out.println("|        5ft foams: "+Methods.F5ft+" left in stock     |");
+				System.out.println("|                                       |");
+				System.out.println("|        8ft hards: "+Methods.H8ft+" left in stock     |");
+				System.out.println("|        6ft hards: "+Methods.H6ft+" left in stock     |");
+				System.out.println("|        5ft hards: "+Methods.H5ft+" left in stock     |");
+				System.out.println("|---------------------------------------|");
+				System.out.println("|   Choose from the following options   |");
+				System.out.println("|                                       |");
+				System.out.println("|            1) Buy                     |");
+				System.out.println("|            2) Rent                    |");
+				System.out.println("|                                       |");
+				System.out.println("+---------------------------------------+");
+
+				char buyrent = Console.askChar("What do you want to do \n 1) Buy  \n 2) Rent"); // creates second menu when case 3 is selected
+				switch(buyrent)
+				{
+
+				case '1': // first case is for the type of surf board 
+
+					char buy = Console.askChar("Would you like a \n 1)Hard  \n 2)Foam board");  // buy case switch
+					switch(buy)
+					{
+					case '1': // buy hard board case
+						System.out.println("We have "+Methods.HardStock+" surfboards left ");
+						System.out.println("Prices are as follows \n ");
+						System.out.println("8ft hard board \t \n £" +Methods.H8ftP);
+						System.out.println("6ft hard board \t \n £" +Methods.H6ftP);
+						System.out.println("5ft hard board \t \n £" +Methods.H5ftP);
+
+						int b = Console.askInt("What size would you like ");
+
+						if(b == 5) // if statements used to pick the size of board that is wanted 
+						{
+							System.out.println("That'll be £" +Methods.H8ftP);
+
+							checkout = checkout + Methods.H5ftP; 
+							Methods.Hard241 = Methods.HardStock - 1; // updates stock after a board is bought/rented
+						}
+
+						if(b == 6)
+						{
+							System.out.println("That'll be £" +Methods.H6ftP);
+							checkout = checkout + Methods.H6ftP;
+							Methods.Hard241 = Methods.HardStock - 1;
+						}
+
+						if(b == 8)
+						{
+
+							System.out.println("That'll be £" +Methods.H5ftP);
+							checkout = checkout + Methods.H5ftP;
+							Methods.Hard241 = Methods.HardStock - 1;
+						}
+
+						break;
+
+
+					case '2': // buy soft board case
+
+						System.out.println("We have "+Methods.FoamStock+" surfboards left");
+						System.out.println("Prices are as follows \n ");
+						System.out.println("8ft foam board \t \n £" +Methods.F8ftP);
+						System.out.println("6ft foam board \t \n £" +Methods.F6ftP);
+						System.out.println("5ft hard board \t \n £" +Methods.F5ftP);
+
+						int f = Console.askInt("What size would you like ");
+
+						if(f == 5)
+						{
+							System.out.println("That'll be £" +Methods.F5ftP);
+							Methods.FoamStock = Methods.FoamStock - 1;
+							checkout = checkout + Methods.F8ftP;
+						}
+
+						if(f ==6)
+						{
+							System.out.println("That'll be £" +Methods.F6ftP);
+							Methods.FoamStock = Methods.FoamStock - 1;
+							checkout = checkout + Methods.F6ftP;
+						}
+
+						if(f == 8)
+						{
+							System.out.println("That'll be £" +Methods.F5ftP);
+							Methods.FoamStock = Methods.FoamStock - 1;
+							checkout = checkout + Methods.F6ftP;
+						}
+
+
+						break;
+					}
+
+					break;
+
+				case '2':
+					char rent = Console.askChar("Would you like a \n 1)Hard  \n 2)Foam board");
+					switch(rent)
+					{
+					case '1':
+
+						System.out.println("We have "+Methods.HardStock+" surfboards left \n ");
+						System.out.println("For all sizes it is: \t £" +Methods.H6ftR);
+						System.out.println("");
+						
+						int rentH = Console.askInt("What size would you like: \n 8ft \n 6ft \n 5ft ");
+
+						if(rentH == 8)
+						{
+							System.out.println("That'll be " +Methods.H8ftR);
+							checkout = Methods.H8ftR + checkout;
+							Methods.HardStock = Methods.HardStock - 1;
+
+						}
+						if(rentH == 6)
+						{
+							System.out.println("That'll be "+Methods.H6ftR);
+							checkout = Methods.H6ftR + checkout;
+							Methods.HardStock = Methods.HardStock - 1;
+						}
+						if(rentH == 5)
+						{
+							System.out.println("That'll be "+Methods.H5ftR);
+							checkout = Methods.H5ftR + checkout;
+							Methods.HardStock = Methods.HardStock - 1;
+						}
+						
+					break;
+						
+					
+						
+
+
+
+					case'2': // rent soft board
+
+						System.out.println("We have "+Methods.FoamStock+" surfboards left \n ");
+						System.out.println("Choose from the following options ");
+						int rentS = Console.askInt("\t \n 8ft \n 6ft \n 5ft"); // size choices 
+
+						if(rentS == 8)
+						{
+							System.out.println("That'll be " +Methods.S8ftR); // 8ft selection
+							checkout = checkout + Methods.S8ftR;
+							Methods.FoamStock = Methods.FoamStock - 1;
+						}
+
+						if(rentS == 6)
+						{
+							System.out.println("That'll be " +Methods.S6ftR); // 6ft selection
+							checkout = checkout + Methods.S6ftR;
+							Methods.FoamStock = Methods.FoamStock - 1;
+						}
+
+						if(rentS == 5)
+						{
+							System.out.println("That'll be " +Methods.S5ftR); // 5ft selection 
+							checkout = checkout + Methods.S5ftR;
+							Methods.FoamStock = Methods.FoamStock - 1;
+						}
+
+						break;
+
+
+					}
+
+
+
+
+
+
+					break;
+
+
+				default:	
+					System.out.println("Invalid option!");
+
+					break;
+				}
+
+
+				break;
+
+			default:
+				System.out.println("Invalid option!");
+				System.out.println("Open you're eyes and try again");
+				break;
+
+
+
+			case '4':
+				System.out.println("----------Checkout---------");
+
+				System.out.println("In total that will be £" +checkout);
+				
+				break;
+
+
+			case 'Q':
+				System.out.println("Application Terminated\n");
+				carry0n = false;
+
+			}
+		}
+		
+	}
+	
+}
