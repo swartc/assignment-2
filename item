@@ -1,0 +1,44 @@
+package skynet;
+
+public class Item 
+
+{
+	// declare properties
+	static int ref;
+	static String type;
+	static int size;
+	
+
+	public Item(int startRef, String startType, int startSize)
+	{
+		ref = startRef;
+		type = startType;
+		size = startSize;
+		
+		return;
+	}
+	
+	public int getRef()
+	{
+		return ref;
+	}
+		
+	public String getType()
+	{
+		return type;
+	}
+	
+	public int getSize()
+	{
+		return size;
+	}
+	
+		
+	
+	
+	
+	
+
+	
+	
+}
